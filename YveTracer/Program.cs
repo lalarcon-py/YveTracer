@@ -2,17 +2,28 @@
 using System.Collections.Generic;
 using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
+using Newtonsoft.Json;
 
 namespace YouTubeTracker
 {
+    
+    public class Config
+    {
+        public string YouTubeAPIKey { get; set; }
+    }
     class Program
     {
         static void Main(string[] args)
         {
+            string configJson = File.ReadAllText("config.json");
+        
+            // Deserialize the JSON into a Config object
+            Config config = (Config)JsonConvert.DeserializeObject(configJson, typeof(Config));
+            
             // Initialize YouTube service
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
-                ApiKey = "AIzaSyAsTBWj2_TZgkEMFx0M0z8P_2lViMA03SI",
+                ApiKey = config.YouTubeAPIKey,
                 ApplicationName = "YveTracer"
             });
 
