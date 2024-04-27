@@ -38,10 +38,10 @@ namespace YouTubeTracker
                 string creator = video.Snippet.ChannelTitle;
                 ulong comments = video.Statistics.CommentCount.GetValueOrDefault();
 
-                // Track autoplayed video
+                // Tracks autoplayed video
                 autoplayedVideoIds.Add(video.Id);
 
-                // Analyze title for common phrases
+                // Analyzes title for common phrases
                 string[] titleWords = title.Split(' '); // Split title into words
                 foreach (var word in titleWords)
                 {
@@ -50,10 +50,6 @@ namespace YouTubeTracker
                         commonPhrases.Add(word);
                     }
                 }
-
-                // Store video information locally (e.g., in a database)
-                // You can use Entity Framework Core or any other ORM
-                // to store data in a database
             }
 
             // Display statistics
